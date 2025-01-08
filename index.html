@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EventSurf</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <title>EventSurf - Find and Host Events</title>
+</head>
+
+<body>
+    <header>
+        <h1>EventSurf</h1>
+        <nav>
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('host-event')">Host Event</a>
+            <a href="#" onclick="showPage('find-event')">Find Event</a>
+            <a href="#" onclick="showPage('event-near-you')">Events Near You</a>
+            <a href="#" onclick="showPage('about')">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page">
+            <h2>Welcome to EventSurf</h2>
+            <p>Your ultimate resource for finding Shoreline events, department gatherings, and all the exciting activities happening at UCSB. Stay connected, explore, and dive into every opportunity around you!</p>
+            <div class="home-blocks">
+                <a href="#" onclick="showPage('find-event')" class="home-block find-events">
+                    <h3>Find Events</h3>
+                </a>
+                <a href="#" onclick="showPage('host-event')" class="home-block host-events">
+                    <h3>Host Events</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- Host Event Page -->
+        <section id="host-event" class="page" style="display:none;">
+            <h2>Host an Event</h2>
+            <form id="eventForm">
+                <input type="text" id="eventTitle" placeholder="Event Title" required>
+                <input type="text" id="eventDate" placeholder="Date (MM/DD/YYYY)" required>
+                <input type="text" id="eventTime" placeholder="Time (e.g., 7 PM)" required>
+                <input type="text" id="eventVenue" placeholder="Venue" required>
+                <textarea id="eventDescription" placeholder="Event Description" required></textarea>
+                <input type="file" id="eventImage" accept="image/*">
+                <button type="submit">Post Event</button>
+            </form>
+        </section>
+
+        <!-- Find Event Page -->
+        <section id="find-event" class="page" style="display:none;">
+            <h2>Find Events</h2>
+            <div id="eventPostsContainer">
+                <!-- Dynamic event posts will be appended here -->
+            </div>
+        </section>
+
+        <!-- Event Near You Page -->
+        <section id="event-near-you" class="page" style="display:none;">
+            <h2>Event Near You</h2>
+            <p>Discover events happening near your location using the map below:</p>
+            <div id="map-container">
+                <div id="map"></div>
+                <input type="text" id="addressInput" placeholder="Enter your address">
+                <button onclick="searchAndGenerateMarker()">Search and Generate Marker</button>
+                <button onclick="generateCurrentLocation()">Generate Current Location Marker</button>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page" style="display:none;">
+            <h2>About EventSurf</h2>
+            <p>EventSurf is a platform designed to help you discover and host events in your area. Whether you're looking for a local concert, a community gathering, or planning your own event, EventSurf has got you covered.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EventSurf. Connect. Explore. Enjoy.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Map Initialization
+        var map = L.map('map').setView([34.4140, -119.8489], 13);
+        var markerGroup = L.layerGroup().addTo(map);
+        var geocoder = L.Control.Geocoder.nominatim();
+        var routingControl;
+        var currentLocation;
+        var destination;
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Function to generate a marker
+        function generateMarker(location, popupText, isDestination = false) {
+            map.setView(location, 15);
+            var marker = L.marker(location).addTo(markerGroup).bindPopup(popupText).openPopup();
+            if (isDestination) {
+                destination = location;
+            }
+            generateRoute();
+        }
+
+        // Function to search and generate a marker
+        function searchAndGenerateMarker() {
+            var address = document.getElementById('addressInput').value;
+            geocoder.geocode(address, function (results) {
+                if (results && results.length > 0) {
+                    var location = results[0].center;
+                    generateMarker(location, "Destination", true);
+                } else {
+                    console.error("Unable to geocode address");
+                }
+            });
+        }
+
+        // Function to generate a marker for the current location
+        function generateCurrentLocation() {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                currentLocation = [position.coords.latitude, position.coords.longitude];
+                generateMarker(currentLocation, "Your Current Location");
+            });
+        }
+
+        // Function to generate a route
+        function generateRoute() {
+            if (currentLocation && destination) {
+                if (routingControl) {
+                    map.removeControl(routingControl);
+                }
+                routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(currentLocation),
+                        L.latLng(destination)
+                    ],
+                    routeWhileDragging: true,
+                    geocoder: L.Control.Geocoder.nominatim(),
+                    showAlternatives: true,
+                    altLineOptions: {
+                        styles: [
+                            {color: 'black', opacity: 0.15, weight: 9},
+                            {color: 'black', opacity: 0.8, weight: 6},
+                            {color: 'blue', opacity: 0.5, weight: 2}
+                        ]
+                    }
+                }).addTo(map);
+            }
+        }
+
+        // Function to show a specific page
+        function showPage(pageId) {
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function(page) {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
