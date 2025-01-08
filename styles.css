@@ -1,3 +1,4 @@
+/* General Styles */
 html, body {
     overflow: auto;
     margin: 0;
@@ -6,7 +7,6 @@ html, body {
     background-color: #f8f9fa; /* Light gray background */
     color: #333; /* Dark gray text for readability */
     line-height: 1.6;
-    height: 100%; /* Ensure the body takes full height */
 }
 
 /* Background Animation */
@@ -23,9 +23,6 @@ body {
     animation: backgroundSlide 20s infinite; /* Slower animation */
     background-size: cover;
     background-position: center;
-    display: flex;
-    flex-direction: column; /* Ensure footer stays at the bottom */
-    min-height: 100vh; /* Full viewport height */
 }
 
 /* Header */
@@ -70,8 +67,6 @@ main {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    flex: 1; /* Allow main content to grow and push footer down */
-    padding-bottom: 80px; /* Add padding to avoid footer overlap */
 }
 
 /* Home Page */
@@ -131,16 +126,134 @@ main {
     color: #FFC72C; /* Gold */
 }
 
+/* Post Event Section */
+#host-event {
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+#eventForm input, #eventForm textarea, #eventForm button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#eventForm input:focus, #eventForm textarea:focus {
+    border-color: #002F6C; /* Navy */
+    box-shadow: 0 0 8px rgba(0, 47, 108, 0.2);
+    outline: none;
+}
+
+#eventForm button {
+    background-color: #002F6C; /* Navy */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+#eventForm button:hover {
+    background-color: #FFC72C; /* Gold */
+}
+
+/* Event Feed Section */
+#event-feed {
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.event-post {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.event-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event-post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-post-content {
+    padding: 20px;
+}
+
+.event-post h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #002F6C; /* Navy */
+}
+
+.event-post small {
+    color: #666;
+}
+
+.event-post-actions {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+.action-button {
+    background-color: #002F6C; /* Navy */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #FFC72C; /* Gold */
+    transform: translateY(-2px);
+}
+
+/* Map Section */
+#map-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+#map {
+    height: 400px;
+    border-radius: 15px;
+}
+
 /* Footer */
 footer {
     background-color: #002F6C; /* Navy */
     color: white;
     text-align: center;
     padding: 20px 0;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    position: relative; /* Change from fixed to relative */
-    margin-top: auto; /* Push footer to the bottom */
 }
 
 /* Responsive Design */
