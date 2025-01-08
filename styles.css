@@ -31,21 +31,22 @@ header {
     background-color: #002F6C; /* Navy */
     color: #FFC72C; /* Gold */
     text-align: center;
-    padding: 30px 0;
+    padding: 0px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.8em;
     font-weight: 700; /* Bold font */
-    letter-spacing: -1px; /* Tighten letter spacing */
+    letter-spacing: -1px; 
+    text-shadow: 3px 2px 4px black;
 }
 
 /* Navigation */
 nav {
     background-color: #FFC72C; /* Gold */
-    padding: 15px 0;
+    padding: 7px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -65,7 +66,7 @@ nav a:hover {
 
 /* Main Content */
 main {
-    padding: 40px 20px;
+    padding: 20px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -91,6 +92,7 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     position: relative;
+    
 }
 
 .home-block::before {
@@ -130,10 +132,10 @@ main {
 /* Post Event Section */
 #host-event {
     background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
-    padding: 30px;
+    padding: 40px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 #eventForm input, #eventForm textarea, #eventForm button {
@@ -257,7 +259,7 @@ footer {
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .home-blocks {
         flex-direction: column;
