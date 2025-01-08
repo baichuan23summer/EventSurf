@@ -23,6 +23,7 @@ body {
     animation: backgroundSlide 20s infinite; /* Slower animation */
     background-size: cover;
     background-position: center;
+    padding-bottom: 0px;
 }
 
 /* Header */
@@ -250,7 +251,7 @@ footer {
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
