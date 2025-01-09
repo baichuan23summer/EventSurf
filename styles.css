@@ -9,19 +9,8 @@ html, body {
     line-height: 1.6;
 }
 
-/* Background Animation */
-@keyframes backgroundSlide {
-    0% { background-image: url('Screenshot 2024-01-13 at 2.29.42 PM.png'); }
-    20% { background-image: url('Screenshot 2024-01-13 at 2.29.14 PM.png'); }
-    40% { background-image: url('Screenshot 2024-01-13 at 2.28.40 PM.png'); }
-    60% { background-image: url('Screenshot 2024-01-13 at 2.28.24 PM.png'); }
-    80% { background-image: url('Screenshot 2024-01-13 at 2.28.05 PM.png'); }
-    100% { background-image: url('Screenshot 2024-01-13 at 2.29.42 PM.png'); }
-}
 
-body {
-    animation: backgroundSlide 20s infinite; /* Slower animation */
-    background-size: cover;
+body {    background-size: cover;
     background-position: center;
     padding-bottom: 0px;
 }
@@ -41,6 +30,158 @@ header h1 {
     font-weight: 700; /* Bold font */
     letter-spacing: -1px; 
     text-shadow: 3px 2px 4px black;
+}
+
+/* scrolling images */
+.nav {
+  width: 400px; 
+  overflow: hidden; /* Hide overflow to create a scrolling effect */
+  white-space: nowrap; /* Prevent images from wrapping */
+  position: relative; /* For positioning the toggle box */
+  justify-content: left;
+}
+
+/* images */
+.nav ul {
+  display: inline-block; 
+  animation: picmove 10s linear infinite;
+  flex-shrink: 0;
+}
+
+/* Individual image items */
+.nav ul li {
+  display: inline-block; /* Display images in a row */
+  width: 400px; 
+  height: 400px;
+  margin-right: 5px; 
+  position: relative; 
+}
+
+/* Ensure images fill their container */
+.nav ul li img {
+  width: 100%; /* Make images responsive */
+  height: 100%; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below images */
+}
+
+/* Description and event time */
+.nav ul li .description {
+  position: absolute; /* Position the description over the image */
+  bottom: 0; /* Align to the bottom of the image */
+  left: 0;
+  right: 0;
+  background: rgba(0, 47, 108, 0.8); /* Semi-transparent navy background */
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.nav ul li .description p {
+  margin: 5px 0; /* Add spacing between lines */
+  font-size: 0.9em; /* Smaller font size */
+}
+
+@keyframes picmove {
+  0% {
+    transform: translateX(0); /* Start from the original position */
+  }
+  100% {
+    transform: translateX(-50%); /* Move to the left by 50% of the container width */
+  }
+}
+
+/* Center the animation and home-blocks */
+.home-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  gap: 30px; /* Add spacing between the nav and home-blocks */
+  padding: 5px; 
+}
+
+
+/* Home Blocks (Buttons) - Vertical Layout */
+.home-blocks {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 20px; /* Add spacing between buttons */
+  height: 450px;
+}
+
+.home-block {
+  width: 200px; /* Adjust width for buttons */
+  height: 300px; /* Adjust height for buttons */
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 47, 108, 0.1), rgba(255, 199, 44, 0.1)); /* Gradient overlay */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-block:hover::before {
+  opacity: 1;
+}
+
+.home-block h3 {
+  font-size: 1.5em; /* Adjust font size for buttons */
+  color: #002F6C; /* Navy */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.home-block:hover h3 {
+  color: #FFC72C; /* Gold */
+}
+
+/* Toggle Box */
+.toggle-box {
+  position: relative; /* Position relative to the .nav container */
+  bottom: 0px; 
+  right: 0px; /* Position at the right of the .nav container */
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Ensure it stays above other content */
+}
+
+.toggle-box button {
+  background: #002F6C; /* Navy */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.toggle-box button:hover {
+  background: #FFC72C; /* Gold */
 }
 
 /* Navigation */
@@ -64,69 +205,75 @@ nav a:hover {
     transform: translateY(-2px); /* Slight lift on hover */
 }
 
-/* Main Content */
 main {
-    padding: 20px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex; /* Use flexbox to align children horizontally */
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Add spacing between the nav and home-blocks */
+  padding: 20px; /* Add padding for better spacing */
 }
 
-/* Home Page */
-.home-blocks {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.home-block {
-    width: 300px;
-    height: 300px;
-    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    position: relative;
+main h2 {
+    margin-top: 10px;
+    
+    margin-bottom: -7px;
     
 }
 
+/* Home Blocks (Buttons) - Vertical Layout */
+.home-blocks {
+  display: block; /* Stack buttons vertically */
+  gap: 20px; /* Add spacing between buttons */
+  padding-top: 20px; /* Remove extra padding */
+}
+
+.home-block {
+  width: 300px; 
+  height: 200px; 
+  background-color: rgba(255, 255, 255, 0.95); 
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px; /* Add spacing between buttons */
+}
+
 .home-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(0, 47, 108, 0.1), rgba(255, 199, 44, 0.1)); /* Gradient overlay */
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 47, 108, 0.1), rgba(255, 199, 44, 0.1)); /* Gradient overlay */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .home-block:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .home-block:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .home-block h3 {
-    font-size: 2em;
-    color: #002F6C; /* Navy */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-    transition: color 0.3s ease;
+  font-size: 1.5em; /* Adjust font size for buttons */
+  color: #002F6C; /* Navy */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
 .home-block:hover h3 {
-    color: #FFC72C; /* Gold */
+  color: #FFC72C; /* Gold */
 }
 
 /* Post Event Section */
@@ -250,15 +397,21 @@ main {
 /* Footer */
 footer {
     background-color: #002F6C; /* Navy */
+    
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 25px 0;
     position: relative;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
+footer p {
+    margin: 3px 0; 
+    font-size: 1em; 
+    line-height: 1.4; 
+}
 
 @media (max-width: 768px) {
     .home-blocks {
