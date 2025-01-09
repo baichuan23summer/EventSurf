@@ -1,3 +1,63 @@
+// Function to read pdf file and extract text
+async function processPdf() {
+    const fileInput = document.getElementById('pdfUpload');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please upload a PDF file.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async function(event) {
+        const arrayBuffer = event.target.result;
+
+        try {
+            let text = '';
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                text += content.items.map(item => item.str).join(' ') + '\n';
+            }
+
+            recommendEvents(text);
+        } catch (error) {
+            console.error("Error reading the PDF:", error);
+            alert('Failed to process the PDF. Please try again.');
+        }
+
+
+    };
+
+    reader.readAsArrayBuffer(file);
+}
+
+function recommendEvents(text) {
+    const eventList = document.getElementById('eventList');
+    const events = [
+        { name: 'Concert XYZ', tags: ['music', 'concert'] },
+        { name: 'Art Exhibition ABC', tags: ['art', 'exhibition'] },
+        { name: 'Tech Conference 2023', tags: ['tech', 'conference'] }
+    ];
+
+    const recommendations = events.filter(event =>
+        event.tags.some(tag => text.toLowerCase().includes(tag))
+    );
+
+    eventList.innerHTML = '';
+    if (recommendations.length === 0) {
+        eventList.innerHTML = '<li>No events match your preferences.</li>';
+    } else {
+        recommendations.forEach(event => {
+            const li = document.createElement('li');
+            li.textContent = event.name;
+            eventList.appendChild(li);
+        });
+    }
+}
+
+
 // Function to show a specific page and hide others
 function showPage(pageId) {
     var pages = document.getElementsByClassName('page');
