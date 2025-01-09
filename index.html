@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <title>EventSurf - Find and Host Events</title>
@@ -116,6 +117,11 @@
             <h2>Find Events</h2>
             <div id="eventPostsContainer">
                 <!-- Dynamic event posts will be appended here -->
+                <h3>Upload your preferences (PDF) to find events:</h3>
+                <input type="file" id="pdfUpload" accept="application/pdf">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+                <button onclick="processPdf()">Find Events</button>
+                <ul class="event-list" id="eventList"></ul>
             </div>
         </section>
 
