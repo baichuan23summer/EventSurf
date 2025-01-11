@@ -119,20 +119,22 @@ window.onload = function () {
 };
 
 // Handle form submission for posting an event
-document
-  .getElementById("eventForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+document.getElementById("eventForm").addEventListener("submit", function (event) {
+  event.preventDefault();
 
-    // Get user input
-    var title = document.getElementById("eventTitle").value;
-    var date = document.getElementById("eventDate").value;
-    var time = document.getElementById("eventTime").value;
-    var venue = document.getElementById("eventVenue").value;
-    var description = document.getElementById("eventDescription").value;
-    var image = document.getElementById("eventImage").files[0];
+  // Get user input
+  var title = document.getElementById("eventTitle").value;
+  var date = document.getElementById("eventDate").value;
+  var time = document.getElementById("eventTime").value;
+  var venue = document.getElementById("eventVenue").value;
+  var description = document.getElementById("eventDescription").value;
+  var image = document.getElementById("eventImage").files[0];
 
-    // Create a new post element
+  // Check which button was clicked
+  const submitButton = event.submitter;
+
+  if (submitButton.textContent === "Post Event") {
+    // Handle "Post Event" functionality
     var postElement = document.createElement("div");
     postElement.classList.add("event-post");
 
@@ -167,7 +169,86 @@ document
 
     // Clear the form
     document.getElementById("eventForm").reset();
-  });
+  } else if (submitButton.textContent === "Generate PDF Request") {
+    // Handle "Generate PDF Request" functionality
+    const eventDetails = {
+      eventTitle: title,
+      eventDate: date,
+      eventTime: time,
+      eventVenue: venue,
+      eventDescription: description,
+    };
+
+    // Call the generatePdf function
+    generatePdf(eventDetails);
+  }
+});
+
+// Function to generate the PDF
+async function generatePdf(eventDetails) {
+  const { PDFDocument, StandardFonts, rgb } = PDFLib;
+
+  // Create a new PDF document
+  const pdfDoc = await PDFDocument.create();
+  const page = pdfDoc.addPage([600, 400]);
+
+  // Set up fonts and styles
+  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const fontSize = 12;
+  const lineHeight = 15;
+  let yPosition = 350;
+
+  // Add content to the PDF
+  const drawText = (text, x, y) => {
+    page.drawText(text, { x, y, size: fontSize, font, color: rgb(0, 0, 0) });
+  };
+
+  // PDF Content
+  drawText("Subject: Request to Host an Event at UCSB", 50, yPosition);
+  yPosition -= lineHeight * 2;
+
+  drawText(`Dear UCSB Event Coordinator,`, 50, yPosition);
+  yPosition -= lineHeight * 2;
+
+  drawText(`I am writing to request approval to host an event at UCSB. Below are the details:`, 50, yPosition);
+  yPosition -= lineHeight * 2;
+
+  drawText(`Event Title: ${eventDetails.eventTitle}`, 50, yPosition);
+  yPosition -= lineHeight;
+
+  drawText(`Event Date: ${eventDetails.eventDate}`, 50, yPosition);
+  yPosition -= lineHeight;
+
+  drawText(`Event Time: ${eventDetails.eventTime}`, 50, yPosition);
+  yPosition -= lineHeight;
+
+  drawText(`Event Venue: ${eventDetails.eventVenue}`, 50, yPosition);
+  yPosition -= lineHeight;
+
+  drawText(`Event Description: ${eventDetails.eventDescription}`, 50, yPosition);
+  yPosition -= lineHeight * 2;
+
+  drawText(`Thank you for considering my request. I look forward to your response.`, 50, yPosition);
+  yPosition -= lineHeight * 2;
+
+  drawText(`Sincerely,`, 50, yPosition);
+  yPosition -= lineHeight;
+
+  drawText(`Event Organizer`, 50, yPosition);
+
+  // Save the PDF
+  const pdfBytes = await pdfDoc.save();
+
+  // Create a Blob and download link
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.getElementById("downloadLink");
+  downloadLink.href = url;
+  downloadLink.download = "Event_Request.pdf";
+
+  // Show the download link
+  document.getElementById("pdfDownloadLink").style.display = "block";
+}
 
 // Handle action button clicks (like, going, not going)
 function handleAction(action, postId) {
