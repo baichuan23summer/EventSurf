@@ -175,6 +175,10 @@ nav a:hover::after {
   }
 }
 
+.nav ul:hover {
+  animation-play-state: paused; /* Pauses the animation on hover */
+}
+
 /* Center the animation and home-blocks */
 .home-container {
   display: flex;
