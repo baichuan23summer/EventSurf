@@ -542,6 +542,13 @@ main h2 {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+#eventForm input::placeholder,
+#eventForm textarea::placeholder {
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 1rem; 
+  color: #999; 
+}
+
 #eventForm input:focus,
 #eventForm textarea:focus {
   border-color: #002f6c; /* Navy */
