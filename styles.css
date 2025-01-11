@@ -2,6 +2,14 @@
 html,
 body {
   overflow: auto;
+    margin: 0;
+      padding: 0;
+        font-family: "Inter", sans-serif; /* Modern sans-serif font */
+          background-color: #f0f0f0; /* original #f8f9fa */
+          /* General Styles */
+html,
+body {
+  overflow: auto;
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif; /* Modern sans-serif font */
@@ -682,4 +690,36 @@ button {
 
 button:hover {
   background-color: #ffc72c;
+}
+
+/* formatting the host event page */
+#host-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 40px;
+  padding-top: 10px;
+  width: 50vw; 
+  max-width: 1200px; /* Optional: Set a maximum width to prevent it from becoming too wide on large screens */
+  margin: 0 auto; 
+  position: relative; 
+  background-color: #fff; /* Optional: Adds a background color for better visibility */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; 
+}
+
+#pdfDownloadLink {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#pdfDownloadLink a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#pdfDownloadLink a:hover {
+  text-decoration: underline;
 }
