@@ -12,6 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
   <title>EventSurf - Find and Host Events</title>
 </head>
 
@@ -148,7 +149,11 @@
         <textarea id="eventDescription" placeholder="Event Description" required></textarea>
         <input type="file" id="eventImage" accept="image/*">
         <button type="submit">Post Event</button>
+        <button type="submit">Generate PDF Request</button>
       </form>
+      <div id="pdfDownloadLink" style="display: none;">
+      <p>Your PDF is ready! <a id="downloadLink" href="#">Download PDF</a></p>
+    </div>
     </section>
 
     <!-- Find Event Page -->
