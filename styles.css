@@ -44,8 +44,29 @@ header {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-.homepageintro {
-  width-max: 1200px;
+.hompageintro h2{
+  margin: 0;
+  font-size: 2.5rem; /* Increased font size for the heading */
+  font-family: 'Roboto', sans-serif; /* Modern, readable font */
+  font-weight: 700; /* Bold weight for emphasis */
+  color: #333;
+  padding-top: 40px;
+  padding-bottom: -20px;
+}
+
+
+.hompageintro p {
+  margin: 0 auto 0; 
+  max-width: 800px; /* Limits the width of the paragraph */
+  padding-bottom: 5px;
+  padding-top: 10px;
+  hyphens: auto;
+  word-break: break-word; 
+  font-size: 1.1rem;
+  line-height: 1.6; 
+  color: #555; /* Slightly lighter color for contrast */
+  text-align: justify;
+  font-weight: 500;
 }
 
 .action-section button {
@@ -117,17 +138,19 @@ nav a:hover::after {
 
 /* scrolling images */
 .nav {
-  width: 600px;/*total width of the scroll animation*/
+  max-width: 700px;/*total width of the scroll animation*/
   overflow: hidden; 
   white-space: nowrap; 
   position: relative; 
   justify-content: center;
+  padding-top: 5px;
+  height: 480px;
 }
 
 /* images */
 .nav ul {
   display: inline-block;
-  animation: picmove 10s linear infinite;
+  animation: picmove 20s linear infinite;
   flex-shrink: 0;
 }
 
@@ -135,8 +158,8 @@ nav a:hover::after {
 .nav ul li {
   display: inline-block; /* Display images in a row */
   width: 400px;
-  height: 400px;
-  margin-right: 5px;
+  height: 480px;
+  margin-right: 0px;
   position: relative;
 }
 
@@ -168,7 +191,7 @@ nav a:hover::after {
   0% {
     transform: translateX(0); /* Start from the original position */
   }
-  100% {
+  50% {
     transform: translateX(
       -50%
     ); /* Move to the left by 50% of the container width */
@@ -185,23 +208,37 @@ nav a:hover::after {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   gap: 30px;
-  padding: 5px;
+  padding-left: 85px;
+  padding-right: 85px;
+  margin-top: -36px;
+ 
 }
 
 /* Home Blocks (Buttons) - Vertical Layout */
 .home-blocks {
   display: flex;
-  flex-direction: column; /* Stack buttons vertically */
-  gap: 20px; /* Add spacing between buttons */
-  height: 450px;
+  flex-direction: row; 
+  gap: 10px; /* Add spacing between buttons */
+  height: 300px;
+  justify-content: center; /* Center buttons horizontally */
+  align-items: center; /* Center buttons vertically */
+}
+
+.hompageintro-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0px; /* Add spacing between intro and buttons */
+  max-width: 600px; /* Limit the width of the intro section */
+  width: 35vw;
 }
 
 .home-block {
   width: 200px; /* Adjust width for buttons */
-  height: 300px; /* Adjust height for buttons */
+  height: 100px; /* Adjust height for buttons */
   background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -247,33 +284,6 @@ nav a:hover::after {
 
 .home-block:hover h3 {
   color: #ffc72c; /* Gold */
-}
-
-/* Toggle Box */
-.toggle-box {
-  position: relative; /* Position relative to the .nav container */
-  bottom: 0px;
-  right: 0px; /* Position at the right of the .nav container */
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* Ensure it stays above other content */
-}
-
-.toggle-box button {
-  background: #002f6c; /* Navy */
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin: 0 2px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.toggle-box button:hover {
-  background: #ffc72c; /* Gold */
 }
 
 /* Navigation */
@@ -449,15 +459,16 @@ main h2 {
 }
 
 /* Home Blocks (Buttons) - Vertical Layout */
+/* Home Blocks (Buttons) - Vertical Layout */
 .home-blocks {
-  display: block; /* Stack buttons vertically */
+  display: flex; /* Stack buttons vertically */
   gap: 20px; /* Add spacing between buttons */
-  padding-top: 20px; /* Remove extra padding */
+  padding-top: 10px; /* Remove extra padding */
 }
 
 .home-block {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 250px;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   display: flex;
