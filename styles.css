@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif; /* Modern sans-serif font */
-  background-color: #f8f9fa; /* Light gray background */
+  background-color: #f0f0f0; /* original #f8f9fa */
   color: #333; /* Dark gray text for readability */
   line-height: 1.6;
 }
@@ -24,7 +24,7 @@ header {
 
 /* Header 容器 */
 .header-container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -45,6 +45,9 @@ header {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+.homepageintro {
+  width-max: 1200px;
+}
 
 .action-section button {
   background-color: #ffc72c;
@@ -115,11 +118,11 @@ nav a:hover::after {
 
 /* scrolling images */
 .nav {
-  width: 400px;
-  overflow: hidden; /* Hide overflow to create a scrolling effect */
-  white-space: nowrap; /* Prevent images from wrapping */
-  position: relative; /* For positioning the toggle box */
-  justify-content: left;
+  width: 600px;/*total width of the scroll animation*/
+  overflow: hidden; 
+  white-space: nowrap; 
+  position: relative; 
+  justify-content: center;
 }
 
 /* images */
@@ -178,7 +181,7 @@ nav a:hover::after {
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  gap: 30px; /* Add spacing between the nav and home-blocks */
+  gap: 30px;
   padding: 5px;
 }
 
