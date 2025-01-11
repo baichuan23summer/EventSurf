@@ -37,9 +37,9 @@
     </div>
     <nav>
       <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('host-event')">Host Event</a>
-      <a href="#" onclick="showPage('find-event')">Find Event</a>
-      <a href="#" onclick="showPage('event-near-you')">Event Near You</a>
+      <a href="#" onclick="showPage('host-event')">Event Holders</a>
+      <a href="#" onclick="showPage('find-event')">Find Events</a>
+      <a href="#" onclick="showPage('event-near-you')">Events Near You</a>
       <a href="#" onclick="showPage('about')">About</a>
     </nav>
   </header>
@@ -76,11 +76,22 @@
   <main>
     <!-- Home Page -->
     <section id="home" class="page">
+      <div class="home-container">
+      <div class="hompageintro-left">
       <div class="hompageintro">
       <h2>Welcome to EventSurf</h2>
+      <div></div>
       <p>Your ultimate resource for finding latest Shoreline events, department gatherings, academic conferences, and all the exciting activities happening at UCSB. Stay connected, explore, and surf your way into every opportunity around you!</p>
       </div>
-      <div class="home-container">
+      <div class="home-blocks">
+          <a href="#" onclick="showPage('find-event')" class="home-block find-events">
+            <h3>Find Events</h3>
+          </a>
+          <a href="#" onclick="showPage('host-event')" class="home-block host-events">
+            <h3>Host Events</h3>
+          </a>
+      </div>
+      </div>
         <div class="nav">
           <ul>
             <li>
@@ -128,21 +139,7 @@
             </li>
           </ul>
         </div>
-
-        <div class="home-blocks">
-          <a href="#" onclick="showPage('find-event')" class="home-block find-events">
-            <h3>Find Events</h3>
-          </a>
-          <a href="#" onclick="showPage('host-event')" class="home-block host-events">
-            <h3>Host Events</h3>
-          </a>
-        </div>
-      </div> <!-- Toggle Box -->
-      <div class="toggle-box">
-        <button onclick="scrollToImage(0)">1</button>
-        <button onclick="scrollToImage(1)">2</button>
-        <button onclick="scrollToImage(2)">3</button>
-      </div>
+      </div> 
     </section>
 
     <!-- Host Event Page -->
@@ -150,11 +147,11 @@
       <h2>Host an Event</h2>
       <p>Fill the form to create an event that will automatically appear in "Find Event". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
       <form id="eventForm">
-        <input type="text" id="eventTitle" placeholder="Event Title" required>
-        <input type="text" id="eventDate" placeholder="Date (MM/DD/YYYY)" required>
-        <input type="text" id="eventTime" placeholder="Time (e.g., 7 PM)" required>
-        <input type="text" id="eventVenue" placeholder="Venue" required>
-        <textarea id="eventDescription" placeholder="Event Description" required></textarea>
+        <input type="text" id="eventTitle" placeholder="Event Name" required>
+        <input type="text" id="eventDate" placeholder="Event Date in MM/DD/YYYY)" required>
+        <input type="text" id="eventTime" placeholder="Time (e.g., 8 AM - 10 AM)" required>
+        <input type="text" id="eventVenue" placeholder="Location" required>
+        <textarea id="eventDescription" placeholder="Describe Your Event" required></textarea>
         <input type="file" id="eventImage" accept="image/*">
         <button type="submit">Post Event</button>
         <button type="submit">Generate PDF Request</button>
@@ -166,14 +163,20 @@
 
     <!-- Find Event Page -->
     <section id="find-event" class="page" style="display:none;">
-      <h2>Find Events</h2>
-      <div id="eventPostsContainer">
+      <div class="events-container">
+      
+      <div class="eventPostsContainer-left">
         <!-- Dynamic event posts will be appended here -->
+        <h2>Find Events</h2>
         <h3>Upload your preferences (PDF) to find events:</h3>
         <input type="file" id="pdfUpload" accept="application/pdf">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
         <button onclick="processPdf()">Find Events</button>
         <ul class="event-list" id="eventList"></ul>
+      </div>
+      <div class="eventPostsContainer-right">
+      </div>
+      
       </div>
     </section>
 
