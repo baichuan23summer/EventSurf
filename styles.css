@@ -178,7 +178,8 @@ nav a:hover::after {
   right: 0;
   background: rgba(0, 47, 108, 0.8); /* Semi-transparent navy background */
   color: white;
-  padding: 10px;
+  padding-bottom: 20px;
+  padding-top: 5px;
   text-align: center;
 }
 
