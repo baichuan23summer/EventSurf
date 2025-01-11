@@ -460,7 +460,6 @@ main h2 {
 }
 
 /* Home Blocks (Buttons) - Vertical Layout */
-/* Home Blocks (Buttons) - Vertical Layout */
 .home-blocks {
   display: flex; /* Stack buttons vertically */
   gap: 20px; /* Add spacing between buttons */
@@ -542,18 +541,18 @@ main h2 {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#eventForm input::placeholder,
-#eventForm textarea::placeholder {
-  font-family: 'Open Sans', sans-serif; 
-  font-size: 1rem; 
-  color: #999; 
-}
-
 #eventForm input:focus,
 #eventForm textarea:focus {
   border-color: #002f6c; /* Navy */
   box-shadow: 0 0 8px rgba(0, 47, 108, 0.2);
   outline: none;
+}
+
+#eventForm input::placeholder,
+#eventForm textarea::placeholder {
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 1rem; 
+  color: #999; 
 }
 
 #eventForm button {
