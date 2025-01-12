@@ -155,9 +155,6 @@ async function recommendEvents(text) {
         postElement.appendChild(contentElement);
         postElement.appendChild(actionsElement);
         document.getElementById("eventList").appendChild(postElement);
-
-        // Clear the form
-        document.getElementById("eventForm").reset();
       });
     }
   } catch (error) {
@@ -336,6 +333,9 @@ window.onload = function () {
       }
     });
 
+
+
+
 // Handle form submission for posting an event
 document.getElementById("eventForm").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -351,7 +351,7 @@ document.getElementById("eventForm").addEventListener("submit", function (event)
   // Check which button was clicked
   const submitButton = event.submitter;
 
-  if (submitButton.textContent === "Post Event") {
+  if (submitButton.textContent === "Post Seminar") {
     // Handle "Post Event" functionality
     var postElement = document.createElement("div");
     postElement.classList.add("event-post");
@@ -381,11 +381,13 @@ document.getElementById("eventForm").addEventListener("submit", function (event)
     postElement.appendChild(imgElement);
     postElement.appendChild(contentElement);
     postElement.appendChild(actionsElement);
-
+    alert("Event posted successfully!");
+    /*
     var myEventsListItem = document.createElement("div");
-    myEventsListItem.appendChild(postElement.cloneNode(true));
-    document.getElementById("myEventsList").appendChild(myEventsListItem);
-
+    myEventsListItem.appendChild(postElement);
+    */
+    document.getElementById("myEventsList").appendChild(postElement);//myEventsListItem
+    
     // Clear the form
     document.getElementById("eventForm").reset();
   } else if (submitButton.textContent === "Generate PDF Request") {
@@ -528,8 +530,6 @@ document.getElementById("eventList").addEventListener("click", function (event) 
       postElements.appendChild(contentElement);
       document.getElementById("myEventsList").appendChild(postElements);
 
-      // Clear the form
-      document.getElementById("eventForm").reset();
     }
   }
 });

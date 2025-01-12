@@ -70,17 +70,20 @@ header {
 
 
 .hompageintro p {
-  margin: 0 auto 0; 
-  max-width: 800px; /* Limits the width of the paragraph */
-  padding-bottom: 5px;
+  margin: 0 auto 0;
+  max-width: 800px;
+  /*Limitsthewidthoftheparagraph*/padding-bottom: 5px;
   padding-top: 10px;
   hyphens: auto;
-  word-break: break-word; 
+  word-break: break-word;
   font-size: 1.1rem;
-  line-height: 1.6; 
-  color: #555; /* Slightly lighter color for contrast */
-  text-align: justify;
+  line-height: 1.6;
+  color: #555;
+  /*Slightlylightercolorforcontrast*/text-align: justify;
   font-weight: 500;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
 }
 
 .action-section button {
