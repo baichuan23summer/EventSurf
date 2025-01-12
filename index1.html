@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>EventSurf</title>
+  <title>SeminarSurf</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
       <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, <!DOCTYPE html>
@@ -20,18 +20,19 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-  <title>EventSurf - Find and Host Events</title>
+  <title>SeminarSurf - Find and Host Seminars</title>
+  <script src="script.js"></script>
 </head>
 
 <body>
   <header>
     <div class="header-container">
       <div class="title-section">
-        <h1>EventSurf</h1>
+        <h1>SeminarSurf</h1>
       </div>
       <div class="action-section">
   <button id="signInButton" class="auth-button">Sign In</button>
-  <a id="myEventsButton" href="#" class="link-button" onclick="showPage('my-events')">My Events</a>
+  <a id="myEventsButton" href="#" class="link-button" onclick="showPage('my-events')">My Seminars</a>
 </div>                                 
       </div>
     </div>
@@ -39,17 +40,16 @@
     </div>
     <nav>
       <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('host-event')">Event Holders</a>
-      <a href="#" onclick="showPage('find-event')">Find Events</a>
-      <a href="#" onclick="showPage('event-near-you')">Events Near You</a>
-      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('host-event')">Host Seminar</a>
+      <a href="#" onclick="showPage('find-event')">Find Seminar</a>
+      <a href="#" onclick="showPage('event-near-you')">Locate Seminar</a>
     </nav>
   </header>
 
   <!-- Login Page -->
   <section id="login" class="page" style="display: none;">
     <div class="login-container">
-      <h2>Login to EventSurf</h2>
+      <h2>Login to SeminarSurf</h2>
       <form id="loginForm">
         <input type="email" id="email" placeholder="Email Address" required>
         <input type="password" id="password" placeholder="Password" required>
@@ -62,8 +62,8 @@
   <!-- myEvents Page -->
   <section id="my-events" class="page" style="display: none;">
                                             <div id="eventPostsContainer">
-  <h2>My Events</h2>
-  <p>Here are the events you've created or joined:</p>
+  <h2>My Seminars</h2>
+  <p>Here are the seminars you've created or joined:</p>
                                                          </div>
   <ul class = "my-events-list" id="myEventsList">
     
@@ -91,62 +91,63 @@
       <div class="home-container">
       <div class="hompageintro-left">
       <div class="hompageintro">
-      <h2>Welcome to EventSurf</h2>
+      <h2>Welcome to SeminarSurf</h2>
       <div></div>
-      <p>Your ultimate resource for finding latest Shoreline events, department gatherings, academic conferences, and all the exciting activities happening at UCSB. Stay connected, explore, and surf your way into every opportunity around you!</p>
+      <p>Tired of tracking seminar and conference dates through countless long emails? SeminarSurf -- your ultimate resource for finding latest academic seminars, workshops
+        , and conferences that fit your career goals is here! Navigate Knowledge, explore ideas, and surf your way into every opportunity to building your career.</p>
       </div>
       <div class="home-blocks">
           <a href="#" onclick="showPage('find-event')" class="home-block find-events">
-            <h3>Find Events</h3>
+            <h3>Find Seminars</h3>
           </a>
           <a href="#" onclick="showPage('host-event')" class="home-block host-events">
-            <h3>Host Events</h3>
+            <h3>Host Seminars</h3>
           </a>
       </div>
       </div>
         <div class="nav">
           <ul>
             <li>
-              <img src="https://images.unsplash.com/photo-1721332149274-586f2604884d?q=80&w=2236&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 1">
+              <img src="frontpagepic1.jpg" alt="Image 1">
               <div class="description">
-                <p>Event: Summer Festival</p>
-                <p>Time: 5:00 PM - 10:00 PM</p>
+                <p>Workshop: Working with Geospatial Data in R</p>
+                <p>Time: 1:30pm to 4:30pm</p>
               </div>
             </li>
             <li>
-              <img src="https://plus.unsplash.com/premium_photo-1672363353897-ae5a81a1ab57?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2">
+              <img src="frontpagepic2.jpg" alt="Image 2">
               <div class="description">
-                <p>Event: Music Concert</p>
-                <p>Time: 7:00 PM - 11:00 PM</p>
+                <p>Seminar: Research Computing</p>
+                <p>Time: 12:00pm - 1:00pm</p>
               </div>
             </li>
             <li>
-              <img src="https://images.unsplash.com/photo-1736264335257-d72025a7898d?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3">
+              <img src="frontpagepic3.jpg" alt="Image 3">
               <div class="description">
-                <p>Event: Art Exhibition</p>
-                <p>Time: 10:00 AM - 6:00 PM</p>
+                <p>Designing Clinical Trial Workflows: Unleashing LLM and RAG</p>
+                <p>Time: 10:00 AM - 10:50 AM</p>
               </div>
             </li>
             <!-- Repeat images for seamless scrolling -->
             <li>
-              <img src="https://images.unsplash.com/photo-1721332149274-586f2604884d?q=80&w=2236&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 1">
+              <img src="frontpagepic1.jpg" alt="Image 1">
               <div class="description">
-                <p>Event: Summer Festival</p>
-                <p>Time: 5:00 PM - 10:00 PM</p>
+                <p>Workshop: Working with Geospatial Data in R</p>
+                <p>Time: 1:30pm to 4:30pm</p>
               </div>
             </li>
             <li>
-              <img src="https://plus.unsplash.com/premium_photo-1672363353897-ae5a81a1ab57?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2">
+              <img src="frontpagepic2.jpg" alt="Image 2">
               <div class="description">
-                <p>Event: Music Concert</p>
-                <p>Time: 7:00 PM - 11:00 PM</p>
+                <p>Seminar: Research Computing</p>
+                <p>Time: 12:00pm - 1:00pm</p>
               </div>
             </li>
             <li>
-              <img src="https://images.unsplash.com/photo-1736264335257-d72025a7898d?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3">
+              <img src="frontpagepic3.jpg" alt="Image 3">
               <div class="description">
-                <p>Event: Art Exhibition</p>
-                <p>Time: 10:00 AM - 6:00 PM</p>
+                <p>Designing Clinical Trial Workflows: Unleashing LLM and RAG</p>
+                <p>Time: 10:00 AM - 10:50 AM</p>
               </div>
             </li>
           </ul>
@@ -156,16 +157,16 @@
 
     <!-- Host Event Page -->
     <section id="host-event" class="page" style="display:none;">
-      <h2>Host an Event</h2>
-      <p>Fill the form to create an event that will automatically appear in "Find Event". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
+      <h2>Host a Seminar</h2>
+      <p>Fill the form to create an event that will automatically appear in "My Seminar". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
       <form id="eventForm">
-        <input type="text" id="eventTitle" placeholder="Event Name" required>
-        <input type="text" id="eventDate" placeholder="Event Date in MM/DD/YYYY)" required>
+        <input type="text" id="eventTitle" placeholder="Seminar Name" required>
+        <input type="text" id="eventDate" placeholder="Seminar Date in MM/DD/YYYY)" required>
         <input type="text" id="eventTime" placeholder="Time (e.g., 8 AM - 10 AM)" required>
         <input type="text" id="eventVenue" placeholder="Location" required>
-        <textarea id="eventDescription" placeholder="Describe Your Event" required></textarea>
+        <textarea id="eventDescription" placeholder="Describe the Seminar" required></textarea>
         <input type="file" id="eventImage" accept="image/*">
-        <button type="submit">Post Event</button>
+        <button type="submit">Post Seminar</button>
         <button type="submit">Generate PDF Request</button>
       </form>
       <div id="pdfDownloadLink" style="display: none;">
@@ -175,13 +176,13 @@
 
     <!-- Find Event Page -->
     <section id="find-event" class="page" style="display:none;">
-      <h2>Find Events</h2>
+      <h2>Find Seminars</h2>
       <div id="eventPostsContainer">
         <!-- Dynamic event posts will be appended here -->
-        <h3>Upload your preferences (PDF) to find events:</h3>
+        <h3>Upload your resume (PDF) to let your personal AI find recommended seminars to advance your academic skills:</h3>
         <input type="file" id="pdfUpload" accept="application/pdf">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-        <button onclick="processPdf()">Find Events</button>
+        <button onclick="processPdf()">Find Seminars</button>
         </div>
         <ul class="event-list" id="eventList"></ul>
       
@@ -189,29 +190,24 @@
 
     <!-- Event Near You Page -->
     <section id="event-near-you" class="page" style="display:none;">
-      <h2>Event Near You</h2>
-      <p>Discover events happening near your location using the map below:</p>
+      <h2>Locate Seminar</h2>
+      <p>Find the route to seminars from your location using the map below:</p>
       <div id="map-container">
         <div id="map"></div>
-        <input type="text" id="addressInput" placeholder="Enter your address">
+        <input type="text" id="addressInput" placeholder="Enter address of Seminar">
         <button onclick="searchAndGenerateMarker()">Search and Generate Marker</button>
         <button onclick="generateCurrentLocation()">Generate Current Location Marker</button>
       </div>
     </section>
 
-    <!-- About Page -->
-    <section id="about" class="page" style="display:none;">
-      <h2>About EventSurf</h2>
-      <p>EventSurf is a platform designed to help you discover and host events in your area. Whether you're looking for a local concert, a community gathering, or planning your own event, EventSurf has got you covered.</p>
-    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 EventSurf. </p>
-    <p>Connect. Explore. EventSurf.</p>
+    <p>&copy; 2025 SeminarSurf. </p>
+    <p>SeminarSurf. Navigate Knowledge. Surf Ideas.</p>
   </footer>
 
-  <script src="script.js"></script>
+  
   <script>
     // Map Initialization
     var map = L.map('map').setView([34.4140, -119.8489], 13);
