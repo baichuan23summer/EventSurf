@@ -86,10 +86,10 @@
       </div>
       <div class="home-blocks">
           <a href="#" onclick="showPage('find-event')" class="home-block find-events">
-            <h3>Find Events</h3>
+            <h3>Find Seminars</h3>
           </a>
           <a href="#" onclick="showPage('host-event')" class="home-block host-events">
-            <h3>Host Events</h3>
+            <h3>Host Seminars</h3>
           </a>
       </div>
       </div>
@@ -146,7 +146,7 @@
     <!-- Host Event Page -->
     <section id="host-event" class="page" style="display:none;">
       <h2>Host an Event</h2>
-      <p>Fill the form to create an event that will automatically appear in "Find Event". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
+      <p>Fill the form to create an event that will automatically appear in "Find Seminar". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
       <form id="eventForm">
         <input type="text" id="eventTitle" placeholder="Event Name" required>
         <input type="text" id="eventDate" placeholder="Event Date in MM/DD/YYYY)" required>
@@ -154,7 +154,7 @@
         <input type="text" id="eventVenue" placeholder="Location" required>
         <textarea id="eventDescription" placeholder="Describe Your Event" required></textarea>
         <input type="file" id="eventImage" accept="image/*">
-        <button type="submit">Post Event</button>
+        <button type="submit">Post Seminar</button>
         <button type="submit">Generate PDF Request</button>
       </form>
       <div id="pdfDownloadLink" style="display: none;">
@@ -164,13 +164,13 @@
 
     <!-- Find Event Page -->
     <section id="find-event" class="page" style="display:none;">
-      <h2>Find Events</h2>
+      <h2>Find Seminars</h2>
       <div id="eventPostsContainer">
         <!-- Dynamic event posts will be appended here -->
-        <h3>Upload your preferences (PDF) to find events:</h3>
+        <h3>Upload your preferences (PDF) to find recommended seminars to advance your academic skills:</h3>
         <input type="file" id="pdfUpload" accept="application/pdf">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-        <button onclick="processPdf()">Find Events</button>
+        <button onclick="processPdf()">Find Seminars</button>
         <ul class="event-list" id="eventList"></ul>
       </div>
     </section>
