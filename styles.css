@@ -44,6 +44,20 @@ header {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+.link-button {
+  color: #ffc72c; /* 黄色文字 */
+  text-decoration: none; /* 去掉默认下划线 */
+  font-size: 1em; /* 调整字体大小 */
+  font-weight: bold; /* 加粗字体 */
+  cursor: pointer; /* 鼠标变成手型 */
+  transition: color 0.3s ease; /* 添加悬停过渡效果 */
+}
+
+.link-button:hover {
+  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  color: #ffb400; /* 悬停时颜色更深的黄色 */
+}
+
 .hompageintro h2{
   margin: 0;
   font-size: 2.5rem; /* Increased font size for the heading */
@@ -730,3 +744,61 @@ button:hover {
 #pdfDownloadLink a:hover {
   text-decoration: underline;
 }
+
+#eventList {
+  display: flex;
+  flex-wrap: wrap; /* 多行布局 */
+  gap: 20px;
+  justify-content: space-between; /* 均匀分布 */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 1200px; /* 限制总宽度 */
+}
+
+.event-list li {
+  flex: 1 1 calc(33.333% - 20px); /* 宽度占三列 */
+  max-width: calc(33.333% - 20px);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#myEventList {
+  display: flex;
+  flex-wrap: wrap; /* 多行布局 */
+  gap: 20px;
+  justify-content: space-between; /* 均匀分布 */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 1200px; /* 限制总宽度 */
+}
+
+.my-events-list li {
+  flex: 1 1 calc(33.333% - 20px); /* 宽度占三列 */
+  max-width: calc(33.333% - 20px);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.my-events-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
