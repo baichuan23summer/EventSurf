@@ -1,4 +1,19 @@
 const OPENAI_API_KEY = "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";
+let isSignedIn = false;
+
+function updateAuthButtons() {
+  const signInButton = document.getElementById("signInButton");
+  const myEventsButton = document.getElementById("myEventsButton");
+
+  if (isSignedIn) {
+    signInButton.style.display = "none";
+    myEventsButton.style.display = "inline-block"; // 显示 My Events
+  } else {
+    signInButton.style.display = "inline-block";
+    myEventsButton.style.display = "none"; // 隐藏 My Events
+  }
+}
+
 
 // Function to send preferences to ChatGPT and get matched events
 async function getRecommendationsFromGPT(preferences, eventData) {
@@ -283,12 +298,14 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  // Check if the user exists in the "database"
+  // 验证用户登录（这里是模拟验证，替换为实际验证逻辑）
   const user1 = users.find((user) => user.email === email && user.password === password);
 
   if (user1) {
     alert("Login successful!");
-    showPage("home"); // Redirect to the home page after successful login
+    isSignedIn = true; // 更新登录状态
+    updateAuthButtons(); // 更新按钮显示状态
+    showPage("home"); // 跳转到主页
   } else {
     alert("Invalid email or password. Please try again.");
   }
@@ -302,6 +319,8 @@ document.getElementById("signInButton").addEventListener("click", function () {
 // On page load, show the home page
 window.onload = function () {
   showPage("home");
+  updateAuthButtons();
+};
 
   // Handle action button clicks (like, going, not going)
   document
@@ -314,7 +333,6 @@ window.onload = function () {
         event.target.classList.toggle("active"); // Toggle active state
       }
     });
-};
 
 // Handle form submission for posting an event
 document.getElementById("eventForm").addEventListener("submit", function (event) {
@@ -356,14 +374,12 @@ document.getElementById("eventForm").addEventListener("submit", function (event)
     actionsElement.classList.add("event-post-actions");
     actionsElement.innerHTML = `
         <button class="action-button" data-action="like" data-post-id="${Date.now()}">Like</button>
-        <button class="action-button" data-action="going" data-post-id="${Date.now()}">Going</button>
-        <button class="action-button" data-action="not-going" data-post-id="${Date.now()}">Not Going</button>
     `;
 
     postElement.appendChild(imgElement);
     postElement.appendChild(contentElement);
     postElement.appendChild(actionsElement);
-    document.getElementById("eventPostsContainer").appendChild(postElement);
+    document.getElementById("eventList").appendChild(postElement);
 
     // Clear the form
     document.getElementById("eventForm").reset();
