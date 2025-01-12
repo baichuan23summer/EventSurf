@@ -1,0 +1,798 @@
+html,
+body {
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif; /* Modern sans-serif font */
+  background-color: #f0f0f0; /* original #f8f9fa */
+  color: #333; /* Dark gray text for readability */
+  line-height: 1.6;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 0px;
+}
+
+header {
+  background-color: #002f6c;
+  padding: 0 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header 容器 */
+.header-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+
+/* 标题样式 */
+.title-section h1 {
+  font-size: 3.5em;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(90deg, #ffc72c, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.link-button {
+  color: #ffc72c; /* 黄色文字 */
+  text-decoration: none; /* 去掉默认下划线 */
+  font-size: 1em; /* 调整字体大小 */
+  font-weight: bold; /* 加粗字体 */
+  cursor: pointer; /* 鼠标变成手型 */
+  transition: color 0.3s ease; /* 添加悬停过渡效果 */
+}
+
+.link-button:hover {
+  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  color: #ffb400; /* 悬停时颜色更深的黄色 */
+}
+
+.hompageintro h2{
+  margin: 0;
+  font-size: 2.5rem; /* Increased font size for the heading */
+  font-family: 'Roboto', sans-serif; /* Modern, readable font */
+  font-weight: 700; /* Bold weight for emphasis */
+  color: #333;
+  padding-top: 40px;
+  padding-bottom: -20px;
+}
+
+
+.hompageintro p {
+  margin: 0 auto 0; 
+  max-width: 800px; /* Limits the width of the paragraph */
+  padding-bottom: 5px;
+  padding-top: 10px;
+  hyphens: auto;
+  word-break: break-word; 
+  font-size: 1.1rem;
+  line-height: 1.6; 
+  color: #555; /* Slightly lighter color for contrast */
+  text-align: justify;
+  font-weight: 500;
+}
+
+.action-section button {
+  background-color: #ffc72c;
+  color: #002f6c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-section button:hover {
+  background-color: #ffd700; 
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+
+.action-section button:active {
+  background-color: #e6b800;
+  transform: translateY(0); 
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.spacer {
+  background-color: #ffffff;
+  height: 10px; 
+  margin: 0; 
+  width: 100%;
+  display: block;
+}
+
+
+nav {
+  background-color: #ffc72c;
+  padding: 10px 0;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 0; 
+}
+
+nav a {
+  position: relative;
+  color: #002f6c;
+  margin: 0 20px;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffd700; 
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* scrolling images */
+.nav {
+  max-width: 700px;/*total width of the scroll animation*/
+  overflow: hidden; 
+  white-space: nowrap; 
+  position: relative; 
+  justify-content: center;
+  padding-top: 5px;
+  height: 480px;
+}
+
+/* images */
+.nav ul {
+  display: inline-block;
+  animation: picmove 20s linear infinite;
+  flex-shrink: 0;
+}
+
+/* Individual image items */
+.nav ul li {
+  display: inline-block; /* Display images in a row */
+  width: 400px;
+  height: 480px;
+  margin-right: 0px;
+  position: relative;
+}
+
+/* Ensure images fill their container */
+.nav ul li img {
+  width: 100%; /* Make images responsive */
+  height: 100%; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below images */
+}
+
+/* Description and event time */
+.nav ul li .description {
+  position: absolute; /* Position the description over the image */
+  bottom: 0; /* Align to the bottom of the image */
+  left: 0;
+  right: 0;
+  background: rgba(0, 47, 108, 0.8); /* Semi-transparent navy background */
+  color: white;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  text-align: center;
+}
+
+.nav ul li .description p {
+  margin: 5px 0; /* Add spacing between lines */
+  font-size: 0.9em; /* Smaller font size */
+}
+
+@keyframes picmove {
+  0% {
+    transform: translateX(0); /* Start from the original position */
+  }
+  50% {
+    transform: translateX(
+      -50%
+    ); /* Move to the left by 50% of the container width */
+  }
+}
+
+.nav ul:hover {
+  animation-play-state: paused; /* Pauses the animation on hover */
+}
+
+/* Center the animation and home-blocks */
+.home-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  gap: 30px;
+  padding-left: 85px;
+  padding-right: 85px;
+  margin-top: -36px;
+ 
+}
+
+/* Home Blocks (Buttons) - Vertical Layout */
+.home-blocks {
+  display: flex;
+  flex-direction: row; 
+  gap: 10px; /* Add spacing between buttons */
+  height: 300px;
+  justify-content: center; /* Center buttons horizontally */
+  align-items: center; /* Center buttons vertically */
+}
+
+.hompageintro-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0px; /* Add spacing between intro and buttons */
+  max-width: 600px; /* Limit the width of the intro section */
+  width: 35vw;
+}
+
+.home-block {
+  width: 200px; /* Adjust width for buttons */
+  height: 100px; /* Adjust height for buttons */
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 47, 108, 0.1),
+    rgba(255, 199, 44, 0.1)
+  ); /* Gradient overlay */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-block:hover::before {
+  opacity: 1;
+}
+
+.home-block h3 {
+  font-size: 1.5em; /* Adjust font size for buttons */
+  color: #002f6c; /* Navy */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.home-block:hover h3 {
+  color: #ffc72c; /* Gold */
+}
+
+/* Navigation */
+nav {
+  background-color: #ffc72c; /* Gold */
+  padding: 7px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: #002f6c; /* Navy */
+  margin: 0 20px;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #007c59; /* Sea Green */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+main {
+  display: flex; /* Use flexbox to align children horizontally */
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Add spacing between the nav and home-blocks */
+  padding: 20px; /* Add padding for better spacing */
+}
+
+main h2 {
+  margin-top: 10px;
+
+  margin-bottom: -7px;
+}
+
+/* 登录界面容器样式 */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #002f6c;
+}
+
+#loginForm input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#loginForm button {
+  width: 100%;
+  padding: 10px;
+  background-color: #002f6c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#loginForm button:hover {
+  background-color: #00509e;
+}
+
+.login-container p {
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+
+.login-container a {
+  color: #00509e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+.register-container {
+  max-width: 400px; /* 宽度适中，居中显示 */
+  margin: 50px auto; /* 上下居中 */
+  padding: 20px;
+  background-color: #fff; /* 白色背景 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增加阴影效果 */
+  text-align: center;
+}
+
+/* 标题样式 */
+.register-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #002f6c; /* 深蓝色标题 */
+}
+
+/* 输入框样式 */
+.register-container input {
+  width: 90%;
+  padding: 10px 10px; /* 增加内边距 */
+  margin: 10px 0;
+  border: 1px solid #ddd; /* 灰色边框 */
+  border-radius: 5px; /* 圆角 */
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 增加交互效果 */
+}
+
+.register-container input:focus {
+  border-color: #002f6c; /* 聚焦时边框变成深蓝色 */
+  box-shadow: 0 0 5px rgba(0, 47, 108, 0.5); /* 聚焦时添加光晕 */
+  outline: none; /* 去除默认外框 */
+}
+
+/* 按钮样式 */
+.register-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #002f6c; /* 深蓝背景 */
+  color: #fff; /* 白色文字 */
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* 鼠标悬停效果 */
+}
+
+.register-container button:hover {
+  background-color: #00509e; /* 悬停时颜色变亮 */
+  transform: translateY(-2px); /* 悬停时按钮稍微上移 */
+}
+
+/* 链接样式 */
+.register-container p {
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.register-container a {
+  color: #00509e; /* 蓝色链接 */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-container a:hover {
+  text-decoration: underline; /* 鼠标悬停时下划线 */
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .register-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+  .register-container h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Home Blocks (Buttons) - Vertical Layout */
+/* Home Blocks (Buttons) - Vertical Layout */
+.home-blocks {
+  display: flex; /* Stack buttons vertically */
+  gap: 20px; /* Add spacing between buttons */
+  padding-top: 10px; /* Remove extra padding */
+}
+
+.home-block {
+  width: 400px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px; /* Add spacing between buttons */
+}
+
+.home-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 47, 108, 0.1),
+    rgba(255, 199, 44, 0.1)
+  ); /* Gradient overlay */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-block:hover::before {
+  opacity: 1;
+}
+
+.home-block h3 {
+  font-size: 1.5em; /* Adjust font size for buttons */
+  color: #002f6c; /* Navy */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.home-block:hover h3 {
+  color: #ffc72c; /* Gold */
+}
+
+/* Post Event Section */
+#host-event {
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+#eventForm input,
+#eventForm textarea,
+#eventForm button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#eventForm input:focus,
+#eventForm textarea:focus {
+  border-color: #002f6c; /* Navy */
+  box-shadow: 0 0 8px rgba(0, 47, 108, 0.2);
+  outline: none;
+}
+
+#eventForm button {
+  background-color: #002f6c; /* Navy */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#eventForm button:hover {
+  background-color: #ffc72c; /* Gold */
+}
+
+/* Event Feed Section */
+#event-feed {
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.event-post {
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.event-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event-post img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-post-content {
+  padding: 20px;
+}
+
+.event-post h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #002f6c; /* Navy */
+}
+
+.event-post small {
+  color: #666;
+}
+
+.event-post-actions {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa; /* Light gray background */
+}
+
+.action-button {
+  background-color: #002f6c; /* Navy */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #ffc72c; /* Gold */
+  transform: translateY(-2px);
+}
+
+/* Map Section */
+#map {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #ddd;
+}
+
+
+/* Footer */
+footer {
+  background-color: #002f6c; /* Navy */
+
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 3px 0;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .home-blocks {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-block {
+    width: 100%;
+    height: 200px;
+  }
+
+  #map-container {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+/* pdf uploader in find event page */
+#pdfUpload {
+  margin: 15px 0;
+  padding: 10px;
+  font-size: 1em;
+}
+
+button {
+  background-color: #002f6c;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #ffc72c;
+}
+
+/* formatting the host event page */
+#host-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 40px;
+  padding-top: 10px;
+  width: 50vw; 
+  max-width: 1200px; /* Optional: Set a maximum width to prevent it from becoming too wide on large screens */
+  margin: 0 auto; 
+  position: relative; 
+  background-color: #fff; /* Optional: Adds a background color for better visibility */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; 
+}
+
+#pdfDownloadLink {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#pdfDownloadLink a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#pdfDownloadLink a:hover {
+  text-decoration: underline;
+}
+
+#eventList {
+  display: flex;
+  flex-wrap: wrap; /* 多行布局 */
+  gap: 20px;
+  justify-content: space-between; /* 均匀分布 */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 1200px; /* 限制总宽度 */
+}
+
+.event-list li {
+  flex: 1 1 calc(33.333% - 20px); /* 宽度占三列 */
+  max-width: calc(33.333% - 20px);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#myEventList {
+  display: flex;
+  flex-wrap: wrap; /* 多行布局 */
+  gap: 20px;
+  justify-content: space-between; /* 均匀分布 */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 1200px; /* 限制总宽度 */
+}
+
+.my-events-list li {
+  flex: 1 1 calc(33.333% - 20px); /* 宽度占三列 */
+  max-width: calc(33.333% - 20px);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.my-events-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
