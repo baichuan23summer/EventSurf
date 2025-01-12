@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>EventSurf</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+      <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, <!DOCTYPE html>
+<html>
+
+<head>
+  <title>EventSurf</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <title>EventSurf - Find and Host Events</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="title-section">
+        <h1>EventSurf</h1>
+      </div>
+      <div class="action-section">
+  <button id="signInButton" class="auth-button">Sign In</button>
+  <a id="myEventsButton" href="#" class="link-button" onclick="showPage('my-events')">My Events</a>
+</div>                                 
+      </div>
+    </div>
+    <div class="spacer">
+    </div>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('host-event')">Event Holders</a>
+      <a href="#" onclick="showPage('find-event')">Find Events</a>
+      <a href="#" onclick="showPage('event-near-you')">Events Near You</a>
+      <a href="#" onclick="showPage('about')">About</a>
+    </nav>
+  </header>
+
+  <!-- Login Page -->
+  <section id="login" class="page" style="display: none;">
+    <div class="login-container">
+      <h2>Login to EventSurf</h2>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="#" onclick="showPage('register')">Register here</a></p>
+    </div>
+  </section>
+
+  <!-- myEvents Page -->
+  <section id="my-events" class="page" style="display: none;">
+                                            <div id="eventPostsContainer">
+  <h2>My Events</h2>
+  <p>Here are the events you've created or joined:</p>
+                                                         </div>
+  <ul class = "my-events-list" id="myEventsList">
+    
+  </ul>
+</section>
+                                                                          
+  <!-- Register Page -->
+  <section id="register" class="page" style="display: none;">
+    <div class="register-container">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="registerEmail" placeholder="Email Address" required>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="#" onclick="showPage('login')">Login here</a></p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Home Page -->
+    <section id="home" class="page">
+      <div class="home-container">
+      <div class="hompageintro-left">
+      <div class="hompageintro">
+      <h2>Welcome to EventSurf</h2>
+      <div></div>
+      <p>Your ultimate resource for finding latest Shoreline events, department gatherings, academic conferences, and all the exciting activities happening at UCSB. Stay connected, explore, and surf your way into every opportunity around you!</p>
+      </div>
+      <div class="home-blocks">
+          <a href="#" onclick="showPage('find-event')" class="home-block find-events">
+            <h3>Find Events</h3>
+          </a>
+          <a href="#" onclick="showPage('host-event')" class="home-block host-events">
+            <h3>Host Events</h3>
+          </a>
+      </div>
+      </div>
+        <div class="nav">
+          <ul>
+            <li>
+              <img src="https://images.unsplash.com/photo-1721332149274-586f2604884d?q=80&w=2236&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 1">
+              <div class="description">
+                <p>Event: Summer Festival</p>
+                <p>Time: 5:00 PM - 10:00 PM</p>
+              </div>
+            </li>
+            <li>
+              <img src="https://plus.unsplash.com/premium_photo-1672363353897-ae5a81a1ab57?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2">
+              <div class="description">
+                <p>Event: Music Concert</p>
+                <p>Time: 7:00 PM - 11:00 PM</p>
+              </div>
+            </li>
+            <li>
+              <img src="https://images.unsplash.com/photo-1736264335257-d72025a7898d?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3">
+              <div class="description">
+                <p>Event: Art Exhibition</p>
+                <p>Time: 10:00 AM - 6:00 PM</p>
+              </div>
+            </li>
+            <!-- Repeat images for seamless scrolling -->
+            <li>
+              <img src="https://images.unsplash.com/photo-1721332149274-586f2604884d?q=80&w=2236&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 1">
+              <div class="description">
+                <p>Event: Summer Festival</p>
+                <p>Time: 5:00 PM - 10:00 PM</p>
+              </div>
+            </li>
+            <li>
+              <img src="https://plus.unsplash.com/premium_photo-1672363353897-ae5a81a1ab57?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2">
+              <div class="description">
+                <p>Event: Music Concert</p>
+                <p>Time: 7:00 PM - 11:00 PM</p>
+              </div>
+            </li>
+            <li>
+              <img src="https://images.unsplash.com/photo-1736264335257-d72025a7898d?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3">
+              <div class="description">
+                <p>Event: Art Exhibition</p>
+                <p>Time: 10:00 AM - 6:00 PM</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div> 
+    </section>
+
+    <!-- Host Event Page -->
+    <section id="host-event" class="page" style="display:none;">
+      <h2>Host an Event</h2>
+      <p>Fill the form to create an event that will automatically appear in "Find Event". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
+      <form id="eventForm">
+        <input type="text" id="eventTitle" placeholder="Event Name" required>
+        <input type="text" id="eventDate" placeholder="Event Date in MM/DD/YYYY)" required>
+        <input type="text" id="eventTime" placeholder="Time (e.g., 8 AM - 10 AM)" required>
+        <input type="text" id="eventVenue" placeholder="Location" required>
+        <textarea id="eventDescription" placeholder="Describe Your Event" required></textarea>
+        <input type="file" id="eventImage" accept="image/*">
+        <button type="submit">Post Event</button>
+        <button type="submit">Generate PDF Request</button>
+      </form>
+      <div id="pdfDownloadLink" style="display: none;">
+      <p>Your PDF is ready! <a id="downloadLink" href="#">Download PDF</a></p>
+    </div>
+    </section>
+
+    <!-- Find Event Page -->
+    <section id="find-event" class="page" style="display:none;">
+      <h2>Find Events</h2>
+      <div id="eventPostsContainer">
+        <!-- Dynamic event posts will be appended here -->
+        <h3>Upload your preferences (PDF) to find events:</h3>
+        <input type="file" id="pdfUpload" accept="application/pdf">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+        <button onclick="processPdf()">Find Events</button>
+        </div>
+        <ul class="event-list" id="eventList"></ul>
+      
+    </section>
+
+    <!-- Event Near You Page -->
+    <section id="event-near-you" class="page" style="display:none;">
+      <h2>Event Near You</h2>
+      <p>Discover events happening near your location using the map below:</p>
+      <div id="map-container">
+        <div id="map"></div>
+        <input type="text" id="addressInput" placeholder="Enter your address">
+        <button onclick="searchAndGenerateMarker()">Search and Generate Marker</button>
+        <button onclick="generateCurrentLocation()">Generate Current Location Marker</button>
+      </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page" style="display:none;">
+      <h2>About EventSurf</h2>
+      <p>EventSurf is a platform designed to help you discover and host events in your area. Whether you're looking for a local concert, a community gathering, or planning your own event, EventSurf has got you covered.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EventSurf. </p>
+    <p>Connect. Explore. EventSurf.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Map Initialization
+    var map = L.map('map').setView([34.4140, -119.8489], 13);
+    var markerGroup = L.layerGroup().addTo(map);
+    var geocoder = L.Control.Geocoder.nominatim();
+    var routingControl;
+    var currentLocation;
+    var destination;
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    // Function to generate a marker
+    function generateMarker(location, popupText, isDestination = false) {
+      map.setView(location, 15);
+      var marker = L.marker(location).addTo(markerGroup).bindPopup(popupText).openPopup();
+      if (isDestination) {
+        destination = location;
+      }
+      generateRoute();
+    }
+    // Function to search and generate a marker
+    function searchAndGenerateMarker() {
+      var address = document.getElementById('addressInput').value;
+      geocoder.geocode(address, function(results) {
+        if (results && results.length > 0) {
+          var location = results[0].center;
+          generateMarker(location, "Destination", true);
+        } else {
+          console.error("Unable to geocode address");
+        }
+      });
+    }
+    // Function to generate a marker for the current location
+    function generateCurrentLocation() {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        currentLocation = [position.coords.latitude, position.coords.longitude];
+        generateMarker(currentLocation, "Your Current Location");
+      });
+    }
+    // Function to generate a route
+    function generateRoute() {
+      if (currentLocation && destination) {
+        if (routingControl) {
+          map.removeControl(routingControl);
+        }
+        routingControl = L.Routing.control({
+          waypoints: [
+            L.latLng(currentLocation),
+            L.latLng(destination)
+          ],
+          routeWhileDragging: true,
+          geocoder: L.Control.Geocoder.nominatim(),
+          showAlternatives: true,
+          altLineOptions: {
+            styles: [{
+                color: 'black',
+                opacity: 0.15,
+                weight: 9
+              },
+              {
+                color: 'black',
+                opacity: 0.8,
+                weight: 6
+              },
+              {
+                color: 'blue',
+                opacity: 0.5,
+                weight: 2
+              }
+            ]
+          }
+        }).addTo(map);
+      }
+    }
+    // Function to show a specific page
+    function showPage(pageId) {
+      var pages = document.querySelectorAll('.page');
+      pages.forEach(function(page) {
+        page.style.display = 'none';
+      });
+      document.getElementById(pageId).style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
