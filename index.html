@@ -44,33 +44,44 @@
     </nav>
   </header>
 
-  <!-- Login Page -->
-  <section id="login" class="page" style="display: none;">
-    <div class="login-container">
-      <h2>Login to EventSurf</h2>
-      <form id="loginForm">
-        <input type="email" id="email" placeholder="Email Address" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-      </form>
-      <p>Don't have an account? <a href="#" onclick="showPage('register')">Register here</a></p>
-    </div>
-  </section>
+<!-- Login Page -->
+<section id="login" class="page" style="display: none;">
+  <div class="login-container">
+    <h2>Login to EventSurf</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#" onclick="showPage('register')">Register here</a></p>
+  </div>
+</section>
 
-  <!-- Register Page -->
-  <section id="register" class="page" style="display: none;">
-    <div class="register-container">
-      <h2>Register</h2>
-      <form id="registerForm">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="email" id="registerEmail" placeholder="Email Address" required>
-        <input type="password" id="registerPassword" placeholder="Password" required>
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-        <button type="submit">Register</button>
-      </form>
-      <p>Already have an account? <a href="#" onclick="showPage('login')">Login here</a></p>
-    </div>
-  </section>
+<!-- myEvents Page -->
+<section id="my-events" class="page" style="display: none;">
+                                          <div id="eventPostsContainer">
+<h2>My Events</h2>
+<p>Here are the events you've created or joined:</p>
+                                                       </div>
+<ul class = "my-events-list" id="myEventsList">
+  
+</ul>
+</section>
+                                                                        
+<!-- Register Page -->
+<section id="register" class="page" style="display: none;">
+  <div class="register-container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="email" id="registerEmail" placeholder="Email Address" required>
+      <input type="password" id="registerPassword" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="#" onclick="showPage('login')">Login here</a></p>
+  </div>
+</section>
 
   <main>
     <!-- Home Page -->
@@ -170,8 +181,9 @@
         <input type="file" id="pdfUpload" accept="application/pdf">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
         <button onclick="processPdf()">Find Seminars</button>
+        </div>
         <ul class="event-list" id="eventList"></ul>
-      </div>
+      
     </section>
 
     <!-- Event Near You Page -->
