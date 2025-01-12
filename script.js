@@ -126,7 +126,7 @@ async function recommendEvents(text) {
         postElement.classList.add("event-post");
 
         var imgElement = document.createElement("img");
-        imgElement.src = "default-image.jpg"; // Use a default image if none is provided
+        imgElement.src = `img0${Math.floor(Math.random() * 4)+1}.jpg`; // Use a default image if none is provided
         imgElement.alt = "Event Image";
         imgElement.classList.add("event-post-image");
 
