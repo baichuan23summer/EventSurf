@@ -1,1 +1,1 @@
-# EventSurf
+# SeminarSurf
