@@ -1,17 +1,23 @@
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = "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";
 
 // Function to send preferences to ChatGPT and get matched events
 async function getRecommendationsFromGPT(preferences, eventData) {
   const prompt = `
-  Match user preferences to event tags.
-  Preferences: ${preferences}
-  Tags: ${eventData.tags.map((tags, i) => `Event ${i}: ${tags.join(", ")}`).join("; ")}
-  Return a list of matching event indices (e.g., [0, 2]).
-`;
+  Match the following user preferences to the event tags and provide reasons for the matches.
+
+  User Preferences: ${preferences}
+
+  Event Data:
+  ${eventData.tags.map((tags, i) => `Event ${i}: ${tags.join(", ")}`).join("; ")}
+
+  Respond with a JSON array of objects where each object contains:
+  - "index" (event index)
+  - "reason" (why this event matches the preferences).
+  Example: [{"index": 0, "reason": "This event matches because it includes 'Data Analysis' and 'Python', which are in the user's preferences."}]
+  `;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,17 +30,18 @@ async function getRecommendationsFromGPT(preferences, eventData) {
     });
 
     if (!response.ok) {
+      console.error("Error Response:", await response.text());
       throw new Error(`ChatGPT API Error: ${response.status}`);
     }
 
     const data = await response.json();
-    const matchedIndices = JSON.parse(data.choices[0].message.content);
-    return matchedIndices;
+    return JSON.parse(data.choices[0].message.content); // Expecting an array of { index, reason }
   } catch (error) {
     console.error("Error with API:", error);
     return [];
   }
 }
+
 
 // Update recommendEvents to integrate ChatGPT API
 async function recommendEvents(text) {
@@ -115,6 +122,123 @@ async function recommendEvents(text) {
   } catch (error) {
     console.error("Error processing recommendations:", error);
     eventList.innerHTML = `<li>Failed to load event data or process recommendations. ${error.message}</li>`;
+  }
+}
+async function recommendEvents(text) {
+  const eventList = document.getElementById("eventList");
+
+  try {
+    const eventData = {
+      name: [
+        "CS Talk: Adam Blank",
+        "Introduction to Data Analysis with Python",
+        "Gauchos in Tech 3.0",
+        "Working with Geospatial Data in R",
+        "Research Computing - What to do when your work gets too big for your laptop",
+        "Container-driven Reproducible Research Made Simple",
+        "Intermediate data analysis with R",
+        "Machine Learning"
+      ],
+      tags: [
+        ["CS", "Talk", "Adam Blank"],
+        ["Data Analysis", "Python"],
+        ["Tech", "Gauchos", "Physics"],
+        ["Data Science", "R"],
+        ["CPU", "GPU", "RAM", "hard drive", "computer clusters"],
+        ["Visual Studio Code", "R environment", "Python environments", "Jupyterlab", "RStudio", "Jetstream2"],
+        ["data analysis", "R"],
+        ["Machine Learning"]
+      ],
+      url: [
+        "https://www.cs.ucsb.edu/happenings/announcement/cs-talk-adam-blank",
+        "https://www.campuscalendar.ucsb.edu/event/introduction-to-data-analysis-with-python",
+        "https://www.campuscalendar.ucsb.edu/event/gauchos-in-tech-3",
+        "https://shoreline.ucsb.edu/library/rsvp_boot?id=2264303",
+        "https://shoreline.ucsb.edu/library/rsvp_boot?id=2264676",
+        "https://shoreline.ucsb.edu/library/rsvp_boot?id=2264302",
+        "https://groups.google.com/u/1/a/library.ucsb.edu/g/carpentry/about?pli=1",
+        "https://groups.google.com/u/1/a/library.ucsb.edu/g/carpentry/about"
+      ],
+      date: [
+        "January 8, 2025",
+        "January 14, 2025",
+        "February 8th, 2025",
+        "January 23th, 2025",
+        "February 3rd, 2025",
+        "February 5th, 2025",
+        "February 18th, 2025",
+        "week 8"
+      ],
+      location: [
+        "Harold Frank Hall 1132",
+        "UCSB Library Room 2509",
+        "Henley Hall Auditorium",
+        "UCSB Library Room 2509",
+        "UCSB Library Room 2509",
+        "UCSB Library Room 1312",
+        "UCSB Library",
+        "UCSB Library"
+      ],
+      time: [
+        "10:00 AM - 11:00 AM",
+        "10:00 AM - 12:30 PM",
+        "9:00 AM - 12:30 PM",
+        "1:30 PM – 4:30 PM",
+        "12 PM – 1 PM",
+        "1 PM – 4 PM",
+        "TBD",
+        "TBD"
+      ]
+    };
+
+    // Get matched events from GPT with reasons
+    const recommendations = await getRecommendationsFromGPT(text, eventData);
+
+    // Clear existing list
+    eventList.innerHTML = "";
+
+    if (recommendations.length === 0) {
+      eventList.innerHTML = "<li>No events match your preferences.</li>";
+    } else {
+      recommendations.forEach(({ index, reason }) => {
+        var postElement = document.createElement("div");
+        postElement.classList.add("event-post");
+
+        var imgElement = document.createElement("img");
+        imgElement.src = "default-image.jpg"; // Use a default image if none is provided
+        imgElement.alt = "Event Image";
+        imgElement.classList.add("event-post-image");
+
+        var contentElement = document.createElement("div");
+        contentElement.classList.add("event-post-content");
+        contentElement.innerHTML = `
+            <h3><a href="${eventData.url[index]}" target="_blank">${eventData.name[index]}</a></h3>
+            <p><strong>Date:</strong> ${eventData.date[index]}</p>
+            <p><strong>Time:</strong> ${eventData.time[index]}</p>
+            <p><strong>Location:</strong> ${eventData.location[index]}</p>
+            <p><strong>Reason for recommendation:</strong> ${reason}</p>
+        `;
+
+        // <p><strong>Time:</strong> ${time}</p>
+
+        var actionsElement = document.createElement("div");
+        actionsElement.classList.add("event-post-actions");
+        actionsElement.innerHTML = `
+            <button class="action-button" data-action="like" data-post-id="${Date.now()}">Like</button>
+        `;
+
+        postElement.appendChild(imgElement);
+        postElement.appendChild(contentElement);
+        postElement.appendChild(actionsElement);
+        document.getElementById("eventPostsContainer").appendChild(postElement);
+
+        // Clear the form
+        document.getElementById("eventForm").reset();
+      });
+    }
+  } catch (error) {
+    console.error("Error processing recommendations:", error);
+    eventList.innerHTML = `<li>Failed to load recommendations. ${error.message}</li>`;
   }
 }
 
