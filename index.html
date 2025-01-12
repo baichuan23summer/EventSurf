@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+  <title>EventSurf</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="title-section">
+        <h1>EventSurf</h1>
+      </div>
+      <div class="action-section">
+        <button id="signInButton" class="auth-button">Sign In</button>
+        <a id="myEventsButton" href="#" class="link-button" onclick="showPage('my-events')">My Events</a>
+      </div>
+      </div>
+    </div>
+    <div class="spacer">
+    </div>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('host-event')">Event Holders</a>
+      <a href="#" onclick="showPage('find-event')">Find Events</a>
+      <a href="#" onclick="showPage('event-near-you')" and onclick=initializeLeafletMap()>Events Near You</a>
+    </nav>
+  </header>
+
+  <!-- Login Page -->
+  <section id="login" class="page" style="display: none;">
+    <div class="login-container">
+      <h2>Login to EventSurf</h2>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="#" onclick="showPage('register')">Register here</a></p>
+    </div>
+  </section>
+
+  <!-- myEvents Page -->
+  <section id="my-events" class="page" style="display: none;">
+  <div id="eventPostsContainer">
+    <h2>My Events</h2>
+    <p>Here are the events you've created or joined:</p>
+  </div>
+  <ul class = "my-events-list" id="myEventsList">
+
+  </ul>
+</section>
+
+  <!-- Register Page -->
+  <section id="register" class="page" style="display: none;">
+    <div class="register-container">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="registerEmail" placeholder="Email Address" required>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="#" onclick="showPage('login')">Login here</a></p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Home Page -->
+    <section id="home" class="page">
+      <div class="home-container">
+      <div class="hompageintro-left">
+      <div class="hompageintro">
+      <h2>Welcome to SeminarSurf</h2>
+      <div></div>
+      <p>Tired of tracking seminar and conference dates through countless long emails? SeminarSurf -- your ultimate resource for finding latest academic seminars, workshops
+        , and conferences that fit your career goals is here! Navigate Knowledge, explore ideas, and surf your way into every opportunity to building your career.</p>
+      </div>
+      <div class="home-blocks">
+          <a href="#" onclick="showPage('find-event')" class="home-block find-events">
+            <h3>Find Events</h3>
+          </a>
+          <a href="#" onclick="showPage('host-event')" class="home-block host-events">
+            <h3>Host Events</h3>
+          </a>
+      </div>
+      </div>
+        <div class="nav">
+          <ul>
+            <li>
+              <img src="frontpagepic1.jpg" alt="Image 1">
+              <div class="description">
+                <p>Workshop: Working with Geospatial Data in R</p>
+                <p>Time: 1:30pm to 4:30pm</p>
+              </div>
+            </li>
+            <li>
+              <img src="frontpagepic2.jpg" alt="Image 2">
+              <div class="description">
+                <p>Seminar: Research Computing</p>
+                <p>Time: 12:00pm - 1:00pm</p>
+              </div>
+            </li>
+            <li>
+              <img src="frontpagepic3.jpg" alt="Image 3">
+              <div class="description">
+                <p>Designing Clinical Trial Workflows: Unleashing LLM and RAG</p>
+                <p>Time: 10:00 AM - 10:50 AM</p>
+              </div>
+            </li>
+            <!-- Repeat images for seamless scrolling -->
+            <li>
+              <img src="frontpagepic1.jpg" alt="Image 1">
+              <div class="description">
+                <p>Workshop: Working with Geospatial Data in R</p>
+                <p>Time: 1:30pm to 4:30pm</p>
+              </div>
+            </li>
+            <li>
+              <img src="frontpagepic2.jpg" alt="Image 2">
+              <div class="description">
+                <p>Seminar: Research Computing</p>
+                <p>Time: 12:00pm - 1:00pm</p>
+              </div>
+            </li>
+            <li>
+              <img src="frontpagepic3.jpg" alt="Image 3">
+              <div class="description">
+                <p>Designing Clinical Trial Workflows: Unleashing LLM and RAG</p>
+                <p>Time: 10:00 AM - 10:50 AM</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Host Event Page -->
+    <section id="host-event" class="page" style="display:none;">
+      <h2>Host a Seminar</h2>
+      <p>Fill the form to create an event that will automatically appear in "Find Event". Generate a pdf of a sample email you can send to the UCSB event coordinator asking for permission.</p>
+      <form id="eventForm">
+        <input type="text" id="eventTitle" placeholder="Event Name" required>
+        <input type="text" id="eventDate" placeholder="Event Date in MM/DD/YYYY)" required>
+        <input type="text" id="eventTime" placeholder="Time (e.g., 8 AM - 10 AM)" required>
+        <input type="text" id="eventVenue" placeholder="Location" required>
+        <textarea id="eventDescription" placeholder="Describe Your Event" required></textarea>
+        <input type="file" id="eventImage" accept="image/*">
+        <button type="submit">Post Event</button>
+        <button type="submit">Generate PDF Request</button>
+      </form>
+      <div id="pdfDownloadLink" style="display: none;">
+      <p>Your PDF is ready! <a id="downloadLink" href="#">Download PDF</a></p>
+    </div>
+    </section>
+
+    <!-- Find Event Page -->
+    <section id="find-event" class="page" style="display:none;">
+      <h2>Find Seminars</h2>
+      <div id="eventPostsContainer">
+        <!-- Dynamic event posts will be appended here -->
+        <h3>Upload your preferences (PDF) to find recommended seminars to advance your academic skills:</h3>
+        <input type="file" id="pdfUpload" accept="application/pdf">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+        <button onclick="processPdf()">Find Events</button>
+        </div>
+        <ul class="event-list" id="eventList"></ul>
+
+    </section>
+
+    <!-- Event Near You Page -->
+    <section id="event-near-you" class="page" style="display:none;">
+      <h2>Locate Seminar</h2>
+      <p>Discover events happening near your location using the map below:</p>
+      <!--
+      <div style="margin-top: 10px;">
+        <input type="text" id="searchBox" placeholder="Search for a location" style="width: 300px; padding: 10px;">
+        <button id="locateButton">Current Location</button>
+      </div>
+      <div id="map" style="width: 100%; height: 500px; margin-top: 20px;"></div>
+    -->
+    <div id="map-container">
+      <div id="map" style="width: 100%; height: 500px;"></div>
+      <input
+        type="text"
+        id="placeName"
+        placeholder="Enter place name"
+        style="margin-top: 10px; padding: 8px; width: 300px;"
+      />
+      <button id="addMarkerButton" style="padding: 8px;">Add Marker</button>
+    </div>
+    <p>
+      <a
+        href="https://www.maptiler.com/copyright/"
+        target="_blank"
+        rel="noopener"
+        >&copy; MapTiler</a
+      >
+      <a
+        href="https://www.openstreetmap.org/copyright"
+        target="_blank"
+        rel="noopener"
+        >&copy; OpenStreetMap contributors</a
+      >
+    </p>
+    <script>
+      const key = "*"; // Your MapTiler API key
+      const map = L.map("map").setView([34.414, -119.8489], 13); // Starting position
+
+      // Add MapTiler tiles
+      L.tileLayer(
+        `https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${key}`,
+        {
+          tileSize: 512,
+          zoomOffset: -1,
+          minZoom: 1,
+          attribution:
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+          crossOrigin: true,
+        }
+      ).addTo(map);
+
+      // Add "Add Marker by Place Name" feature
+      document.getElementById("addMarkerButton").addEventListener("click", async () => {
+        const placeName = document.getElementById("placeName").value.trim();
+        if (!placeName) {
+          alert("Please enter a place name.");
+          return;
+        }
+
+        if (placeName=="my location"){
+          navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            L.marker([latitude, longitude])
+              .addTo(map)
+              .bindPopup("Your location")
+              .openPopup();
+            map.setView([latitude, longitude], 14);
+          });
+          return;
+        }
+        try {
+          // Geocode the place name using OpenStreetMap's Nominatim API
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+              placeName
+            )}`
+          );
+          const locations = await response.json();
+
+          if (locations.length > 0) {
+            const { lat, lon } = locations[0];
+
+            // Add a marker at the location
+            L.marker([lat, lon])
+              .addTo(map)
+              .bindPopup(`Marker added: ${placeName}`)
+              .openPopup();
+
+            // Center the map to the new marker
+            map.setView([lat, lon], 14);
+          } else {
+            alert("Location not found. Please try a different name.");
+          }
+        } catch (error) {
+          console.error("Error adding marker:", error);
+          alert("Failed to add marker. Please try again later.");
+        }
+      });
+    </script>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SeminarSurf. </p>
+    <p>SeminarSurf. Navigate Knowledge. Surf Ideas. </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
