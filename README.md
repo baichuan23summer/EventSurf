@@ -1,7 +1,7 @@
 # SeminarSurf
 we’re excited to introduce SeminarSurf, a platform designed to eliminate the hassle of keeping up with academic seminars during a busy quarter. Whether you're juggling coursework, extracurriculars, or research, SeminarSurf personalizes your seminar experience, so you can focus on learning and growing in your field.
 
-[
+
 
 As students, we’ve all been there—scrolling through outdated department emails, trying to remember seminar dates, and missing out on relevant events because we just couldn’t keep track. With all the demands of a quarter, staying updated on seminars shouldn’t be an additional stress. Unfortunately, the current platforms like Shoreline or department websites are fragmented, difficult to navigate, and don't offer personalized suggestions based on your academic and career goals. This leaves many students missing out on valuable opportunities.
 
